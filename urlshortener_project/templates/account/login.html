@@ -1,0 +1,33 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account %}
+{% load socialaccount %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+
+
+    {% block header %}
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+              <img class="responsive" src="{% static 'images/aisdme.png' %}" alt="AISD.me">
+              <hr>
+
+      {% get_providers as socialaccount_providers %}
+      {% if socialaccount_providers %}
+        <ul class="socialaccount_providers col-sm-6 col-sm-offset-3">
+          {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+        </ul>
+      {% include "socialaccount/snippets/login_extra.html" %}
+
+      {% endif %}
+
+
+            </div>
+        </div>
+    </header>
+    {% endblock header %}

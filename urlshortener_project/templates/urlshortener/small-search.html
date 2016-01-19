@@ -1,0 +1,16 @@
+
+  <header style="min-height:220px;">
+      <div class="header-content">
+          <div class="header-content-inner">
+              <div id="validateError"></div>
+              <form id="shorten-form" action="{% url 'shortener:createURL' %}" method="post" autocomplete="off">{% csrf_token %}
+                <i class="fa fa-link long-fa"></i>
+                {{ shortForm.longURL }}
+                {{ shortForm.lognURL.errors }}
+                <button type="submit" class="btn btn-primary btn-lg btn-shorten fadeOut">
+                  <i class="fa fa-send fa-fw"></i><span>  Get Short URL</span>
+                </button>
+						  </form>
+          </div>
+      </div>
+  </header>

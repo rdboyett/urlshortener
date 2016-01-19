@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block header %}
+  {% include "urlshortener/small-search.html" %}
+{% endblock header %}
+
+
+{% block content %}
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                  <form id="update_shortened_link_form" class="form-inline" action="" method="post">{% csrf_token %}
+                    <div class="form-group">
+                      <h1>http://aisd.me/{{ form.short }}</h1>
+                      {{ form.short.errors }}
+                    </div>
+                    <hr>
+                    <div>
+                      <label class="col-xs-12">Long URL</label>
+                      {{ form.longURL }}
+                    </div>
+                    <hr>
+                    <button type="submit" class="btn btn-default btn-xl">Update</button>
+                  </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

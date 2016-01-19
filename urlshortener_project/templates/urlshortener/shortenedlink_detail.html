@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block header %}
+  {% include "urlshortener/small-search.html" %}
+{% endblock header %}
+
+
+{% block content %}
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                {% if myShortenedLink %}
+                    <h1 class="section-heading">aisd.me/{{ myShortenedLink.short }}</h1>
+                    <hr class="light">
+                    <p class="text-faded">{{ myShortenedLink.longURL }}</p>
+                    <a href="{% url 'shortener:updateURL' myShortenedLink.id %}" class="btn btn-default btn-xl">Edit Link</a>
+                    <a href="{% url 'shortener:deleteURL' myShortenedLink.id %}" class="btn btn-danger btn-xl">Delete Link</a>
+                {% else %}
+                    <h2 class="section-heading">Sorry, you have no shorted urls yet.</h2>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

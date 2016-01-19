@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+
+{% block header %}
+  {% include "urlshortener/small-search.html" %}
+{% endblock header %}
+
+
+{% block content %}
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                {% if myURLs_list %}
+                  <div class="list-group">
+                    {% for myURL in myURLs_list %}
+                      <a href="{{ myURL.get_absolute_url }}" class="list-group-item">
+                        <h3 class="">http://aisd.me/{{ myURL.short }}</h3>
+                        <div class="">{{ myURL.longURL }}</div>
+                        <hr>
+                        <p>Created/Updated: {{ myURL.modified|date }}</p>
+                        <p>Clicks: {{ myURL.hitNumber }}</p>
+                      </a>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                    <h2 class="section-heading">Sorry, you have no shorted urls yet.</h2>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+

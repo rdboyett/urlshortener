@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block header %}
+  {% include "urlshortener/small-search.html" %}
+{% endblock header %}
+
+
+{% block content %}
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                <form action="" method="post">{% csrf_token %}
+                  <h2>Are you sure you want to delete <span class="text-danger">"http://aisd.me/{{ object }}"</span>?</h2>
+                  <button type="submit" class="btn btn-danger btn-xl">Confirm Delete</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}
