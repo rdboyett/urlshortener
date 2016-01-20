@@ -63,3 +63,8 @@ tests/.hitch
 
 # MailHog binary
 mailhog
+
+#migration files
+migrations/
+staticfiles/
+
