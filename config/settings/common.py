@@ -38,9 +38,10 @@ THIRD_PARTY_APPS = (
     'crispy_forms',  # Form layouts
     'allauth',  # registration
     'allauth.account',  # registration
-    'allauth.socialaccount',  # registration
+    'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'rest_framework',
+    'django_extensions',
 )
 
 # Apps specific for this project go here.
@@ -96,14 +97,23 @@ ADMINS = (
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
 
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
+SITE_ID = 1
+
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
-    # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
-    'default': env.db("DATABASE_URL", default="postgres:///urlshortener_project"),
-}
-DATABASES['default']['ATOMIC_REQUESTS'] = True
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+            'NAME': 'urlshortener_project',                      # Or path to database file if using sqlite3.
+            # The following settings are not used with sqlite3:
+            'USER': 'rboyett',
+            'PASSWORD': 'dallas20',
+            'HOST': 'localhost',                      # Empty for localhost through domain sockets or           '127.0.0.1' for localhost through TCP.
+            'PORT': '',                      # Set to empty string for default.
+        }
+    }
 
 
 # GENERAL CONFIGURATION
@@ -117,8 +127,6 @@ TIME_ZONE = 'UTC'
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
 LANGUAGE_CODE = 'en-us'
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
-SITE_ID = 1
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#use-i18n
 USE_I18N = True
