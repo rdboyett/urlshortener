@@ -12,7 +12,14 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                 {% if myShortenedLink %}
-                    <h1 class="section-heading">aisd.me/{{ myShortenedLink.short }}</h1>
+                    <input id="copyLink" type="hidden" value="aisd.me/{{ myShortenedLink.short }}">
+                    <h1 class="section-heading">
+                      aisd.me/{{ myShortenedLink.short }}
+                <button id="copy-button" type="button" class="btn btn-primary btn-lg btn-shorten fadeOut">
+                  <i class="fa fa-paste fa-fw"></i><span>Clipboard</span>
+                </button>
+                    </h1>
+
                     <hr class="light">
                     <p class="text-faded">{{ myShortenedLink.longURL }}</p>
                     <a href="{% url 'shortener:updateURL' myShortenedLink.id %}" class="btn btn-default btn-xl">Edit Link</a>
@@ -26,3 +33,24 @@
     </section>
 
 {% endblock content %}
+
+
+{% block extraScript %}
+  {% if myShortenedLink %}
+  <script>
+    $("#copy-button").click(function(){
+      var text = "aisd.me/{{ myShortenedLink.short }}";
+      var copyFrom = $('<textarea/>');
+      copyFrom.css({
+         position: "absolute",
+         left: "-1000px",
+         top: "-1000px",
+      });
+      copyFrom.text(text);
+      $('body').append(copyFrom);
+      copyFrom.select();
+      document.execCommand('copy');
+    });
+  </script>
+  {% endif %}
+{% endblock extraScript %}
